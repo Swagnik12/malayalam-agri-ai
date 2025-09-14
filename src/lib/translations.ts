@@ -74,6 +74,55 @@ export const translations = {
   escalatedQueries: {
     en: "Escalated Queries",
     ml: "കൈമാറിയ ചോദ്യങ്ങൾ"
+  },
+  // New dashboard translations
+  weatherForecast: {
+    en: "Weather Forecast",
+    ml: "കാലാവസ്ഥാ പ്രവചനം"
+  },
+  currentCrops: {
+    en: "Current Crops",
+    ml: "നിലവിലെ വിളകൾ"
+  },
+  aiChatbot: {
+    en: "AI Assistant",
+    ml: "AI സഹായി"
+  },
+  governmentSchemes: {
+    en: "Government Schemes",
+    ml: "സർക്കാർ പദ്ധതികൾ"
+  },
+  personalizedAdvice: {
+    en: "Personalized Advice",
+    ml: "വ്യക്തിഗത ഉപദേശം"
+  },
+  selectCrops: {
+    en: "Select your current crops",
+    ml: "നിങ്ങളുടെ നിലവിലെ വിളകൾ തിരഞ്ഞെടുക്കുക"
+  },
+  addCrop: {
+    en: "Add Crop",
+    ml: "വിള ചേർക്കുക"
+  },
+  viewScheme: {
+    en: "View Details",
+    ml: "വിശദാംശങ്ങൾ കാണുക"
+  },
+  todaysAdvice: {
+    en: "Today's Advice",
+    ml: "ഇന്നത്തെ ഉപദേശം"
+  },
+  pestDetection: {
+    en: "Upload crop image for pest/disease detection",
+    ml: "കീടനാശിനി/രോഗ കണ്ടെത്തലിനായി വിള ചിത്രം അപ്‌ലോഡ് ചെയ്യുക"
+  },
+  chatWithAI: {
+    en: "Chat with AI Assistant",
+    ml: "AI സഹായിയുമായി സംസാരിക്കുക"
+  },
+  sendMessage: {
+    en: "Send Message",
+    ml: "സന്ദേശം അയയ്ക്കുക"
   }
 };
 

@@ -1,16 +1,35 @@
-# Digital Krishi Officer (ഡിജിറ്റൽ കൃഷി ഓഫീസർ)
+# Digital Krishi Officer 🌱
+## AI-Based Farmer Query Support and Advisory System
 
-An AI-powered agricultural support system for Kerala farmers, built for SIH 2025 - Problem Statement ID 25076.
+**SIH 2025 Problem Statement ID: 25076**
 
-## 🌾 Features
+A comprehensive bilingual (English/Malayalam) web application designed to empower Kerala farmers with AI-powered agricultural support, real-time weather updates, government scheme information, and personalized farming advice.
 
-### Frontend
-- **Bilingual Support**: English and Malayalam interface
-- **Farmer Dashboard**: Query input with text, voice, and image support
-- **AI Response System**: Context-aware agricultural advice
-- **Escalation System**: Automatic forwarding to agricultural officers
-- **Admin Panel**: Query management for agricultural officers
-- **Responsive Design**: Mobile-friendly interface
+## 🎯 Features
+
+### 1. **Smart Dashboard**
+- **Weather Forecast**: 4-day weather prediction with humidity and wind speed
+- **Current Crops Management**: Track and manage multiple crops with status updates
+- **AI Chatbot**: Advanced conversational AI for farming queries with image analysis
+- **Government Schemes**: Latest subsidy and scheme information with application deadlines
+- **Personalized Advice**: Location and crop-specific recommendations
+
+### 2. **AI-Powered Assistant**
+- Text and voice input support (Malayalam/English)
+- Crop image analysis for pest and disease detection
+- Weather-based farming suggestions
+- Market price alerts and timing recommendations
+- Automatic escalation to agricultural officers for complex queries
+
+### 3. **Bilingual Support**
+- Seamless switching between English and Malayalam
+- Localized content for Kerala districts and crops
+- Cultural adaptation for local farming practices
+
+### 4. **User Management**
+- Secure login system with role-based access
+- Guest access for immediate assistance
+- Admin panel for agricultural officers
 
 ### Backend Features (Mock Implementation)
 - User authentication (farmer/admin roles)
