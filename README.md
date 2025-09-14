@@ -1,73 +1,220 @@
-# Welcome to your Lovable project
+# Digital Krishi Officer (ഡിജിറ്റൽ കൃഷി ഓഫീസർ)
 
-## Project info
+An AI-powered agricultural support system for Kerala farmers, built for SIH 2025 - Problem Statement ID 25076.
 
-**URL**: https://lovable.dev/projects/b32fbba8-04b4-455e-8f1c-65dc5c590030
+## 🌾 Features
 
-## How can I edit this code?
+### Frontend
+- **Bilingual Support**: English and Malayalam interface
+- **Farmer Dashboard**: Query input with text, voice, and image support
+- **AI Response System**: Context-aware agricultural advice
+- **Escalation System**: Automatic forwarding to agricultural officers
+- **Admin Panel**: Query management for agricultural officers
+- **Responsive Design**: Mobile-friendly interface
 
-There are several ways of editing your application.
+### Backend Features (Mock Implementation)
+- User authentication (farmer/admin roles)
+- Query storage and management
+- Escalation workflow
+- Multilingual response system
 
-**Use Lovable**
+## 🚀 Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b32fbba8-04b4-455e-8f1c-65dc5c590030) and start prompting.
+- **Frontend**: React 18 + TypeScript + Vite
+- **UI Framework**: TailwindCSS + ShadCN UI
+- **State Management**: React Context + React Query
+- **Routing**: React Router v6
+- **Icons**: Lucide React
+- **Database**: SQLite (for production implementation)
+- **Backend**: FastAPI/Node.js (for production implementation)
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📋 Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm
+- Git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Installation & Setup
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd digital-krishi-officer
+   ```
 
-Follow these steps:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Open in browser**
+   Navigate to `http://localhost:8080`
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 👥 Usage
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### For Farmers
+1. **Login**: Use any username/password or "Continue as Guest"
+2. **Ask Questions**: Type farming queries in English or Malayalam
+3. **Upload Images**: Add crop photos for better diagnosis
+4. **Set Context**: Select location, crop type, and season
+5. **Get AI Responses**: Receive contextual agricultural advice
+6. **Provide Feedback**: Rate responses or escalate to officers
+
+### For Agricultural Officers (Admin)
+1. **Login**: Use username "admin" with any password
+2. **View Escalations**: See farmer queries that need expert attention
+3. **Manage Queries**: Mark queries as resolved
+4. **Monitor Statistics**: Track pending and resolved cases
+
+## 🏗️ Project Structure
+
+```
+src/
+├── components/
+│   ├── ui/                 # ShadCN UI components
+│   └── LanguageToggle.tsx  # Language switcher
+├── contexts/
+│   └── LanguageContext.tsx # Multilingual state management
+├── lib/
+│   ├── translations.ts     # Bilingual content
+│   └── utils.ts           # Utility functions
+├── pages/
+│   ├── Login.tsx          # Authentication page
+│   ├── Dashboard.tsx      # Farmer interface
+│   ├── Admin.tsx          # Officer panel
+│   └── NotFound.tsx       # 404 page
+└── types/
+    └── index.ts           # TypeScript definitions
+```
+
+## 🎨 Design System
+
+The app uses an agricultural-themed design system with:
+- **Primary Colors**: Forest green (#2D5A27) for nature/agriculture
+- **Accent Colors**: Harvest gold (#E6B800) for warmth/prosperity
+- **Supporting Colors**: Earth browns and sky blues
+- **Typography**: Clean, accessible fonts for rural users
+- **Components**: Custom variants for farming context
+
+## 🔧 Development Features
+
+### Mock AI Responses
+Currently implements mock responses for demonstration. In production:
+- Integrate OpenAI API or custom LLM
+- Fine-tune models for Malayalam agricultural queries
+- Implement confidence scoring for escalation
+
+### Authentication
+Simple localStorage-based auth for demo. Production should include:
+- JWT-based authentication
+- Role-based access control
+- Secure password handling
+
+### Database Schema (for production)
+```sql
+-- Users table
+CREATE TABLE users (
+    id TEXT PRIMARY KEY,
+    username TEXT UNIQUE,
+    password_hash TEXT,
+    role TEXT CHECK(role IN ('farmer', 'officer', 'admin')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Queries table
+CREATE TABLE queries (
+    id TEXT PRIMARY KEY,
+    user_id TEXT REFERENCES users(id),
+    question TEXT NOT NULL,
+    answer TEXT,
+    language TEXT CHECK(language IN ('en', 'ml')),
+    location TEXT,
+    crop_type TEXT,
+    season TEXT,
+    confidence REAL,
+    feedback TEXT CHECK(feedback IN ('positive', 'negative')),
+    escalated BOOLEAN DEFAULT FALSE,
+    status TEXT CHECK(status IN ('pending', 'answered', 'escalated')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## 🚀 Deployment
+
+### Development
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Production Build
+```bash
+npm run build
+npm run preview
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Docker (optional)
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 8080
+CMD ["npm", "run", "preview"]
+```
 
-**Use GitHub Codespaces**
+## 📱 Mobile Responsiveness
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The app is fully responsive and optimized for:
+- Desktop computers (admin interface)
+- Tablets (field officers)
+- Mobile phones (farmers in rural areas)
 
-## What technologies are used for this project?
+## 🌐 Multilingual Support
 
-This project is built with:
+- **English**: Primary interface language
+- **Malayalam**: Native language for Kerala farmers
+- **Extensible**: Easy to add more regional languages
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔮 Future Enhancements
 
-## How can I deploy this project?
+1. **AI Integration**
+   - OpenAI API for intelligent responses
+   - Fine-tuned Malayalam agricultural model
+   - Image recognition for crop diseases
 
-Simply open [Lovable](https://lovable.dev/projects/b32fbba8-04b4-455e-8f1c-65dc5c590030) and click on Share -> Publish.
+2. **Real-time Features**
+   - WebSocket for live officer chat
+   - Push notifications for query updates
+   - Real-time weather integration
 
-## Can I connect a custom domain to my Lovable project?
+3. **Advanced Features**
+   - Voice-to-text in Malayalam
+   - Text-to-speech for responses
+   - Offline mode for rural areas
+   - GPS-based local recommendations
 
-Yes, you can!
+## 🤝 Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📄 License
+
+This project is developed for SIH 2025 and follows applicable competition guidelines.
+
+## 👥 Team
+
+Developed for Smart India Hackathon 2025 - Problem Statement ID 25076
+
+---
+
+**Digital Krishi Officer** - Empowering Kerala farmers with AI-driven agricultural support! 🌾
