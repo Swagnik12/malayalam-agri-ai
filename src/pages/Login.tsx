@@ -14,6 +14,9 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +26,20 @@ const Login = () => {
       username, 
       role: username === 'admin' ? 'admin' : 'farmer' 
     }));
+    navigate('/dashboard');
+  };
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Mock registration - store user data
+    const newUser = {
+      id: Date.now().toString(),
+      username,
+      fullName,
+      email,
+      role: 'farmer'
+    };
+    localStorage.setItem('user', JSON.stringify(newUser));
     navigate('/dashboard');
   };
 
@@ -61,7 +78,35 @@ const Login = () => {
         </CardHeader>
         
         <CardContent className="space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={isRegistering ? handleRegister : handleLogin} className="space-y-4">
+            {isRegistering && (
+              <div className="space-y-2">
+                <Label htmlFor="fullName">{translations.fullName[language]}</Label>
+                <Input
+                  id="fullName"
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="transition-smooth focus:ring-2 focus:ring-primary/20"
+                  required
+                />
+              </div>
+            )}
+            
+            {isRegistering && (
+              <div className="space-y-2">
+                <Label htmlFor="email">{translations.email[language]}</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="transition-smooth focus:ring-2 focus:ring-primary/20"
+                  required
+                />
+              </div>
+            )}
+            
             <div className="space-y-2">
               <Label htmlFor="username">{translations.username[language]}</Label>
               <Input
@@ -87,26 +132,43 @@ const Login = () => {
             </div>
             
             <Button type="submit" className="w-full bg-gradient-primary hover:opacity-90 transition-smooth">
-              {translations.login[language]}
+              {isRegistering ? translations.register[language] : translations.login[language]}
             </Button>
           </form>
           
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-border" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">or</span>
-            </div>
+          <div className="text-center">
+            <Button
+              variant="ghost"
+              onClick={() => setIsRegistering(!isRegistering)}
+              className="text-sm text-muted-foreground hover:text-primary transition-smooth"
+            >
+              {isRegistering 
+                ? `${translations.alreadyHaveAccount[language]} ${translations.login[language]}`
+                : `${translations.dontHaveAccount[language]} ${translations.register[language]}`
+              }
+            </Button>
           </div>
           
-          <Button 
-            variant="outline" 
-            onClick={handleGuestLogin}
-            className="w-full border-harvest-gold/30 hover:bg-harvest-gold/10 hover:border-harvest-gold/50 transition-smooth"
-          >
-            {translations.continueAsGuest[language]}
-          </Button>
+          {!isRegistering && (
+            <>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-border" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">or</span>
+                </div>
+              </div>
+              
+              <Button 
+                variant="outline" 
+                onClick={handleGuestLogin}
+                className="w-full border-harvest-gold/30 hover:bg-harvest-gold/10 hover:border-harvest-gold/50 transition-smooth"
+              >
+                {translations.continueAsGuest[language]}
+              </Button>
+            </>
+          )}
         </CardContent>
       </Card>
     </div>

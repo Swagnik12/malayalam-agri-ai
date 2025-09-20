@@ -11,6 +11,26 @@ export const translations = {
     en: "Login",
     ml: "ലോഗിൻ"
   },
+  register: {
+    en: "Register",
+    ml: "രജിസ്റ്റർ"
+  },
+  fullName: {
+    en: "Full Name",
+    ml: "പൂർണ്ണ നാമം"
+  },
+  email: {
+    en: "Email",
+    ml: "ഇമെയിൽ"
+  },
+  alreadyHaveAccount: {
+    en: "Already have an account?",
+    ml: "ഇതിനകം അക്കൗണ്ട് ഉണ്ടോ?"
+  },
+  dontHaveAccount: {
+    en: "Don't have an account?",
+    ml: "അക്കൗണ്ട് ഇല്ലേ?"
+  },
   username: {
     en: "Username",
     ml: "ഉപയോക്തൃനാമം"
