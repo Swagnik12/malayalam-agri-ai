@@ -18,6 +18,12 @@ const Login = () => {
   const [fullName, setFullName] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
 
+  // Debug logging
+  console.log('Language:', language);
+  console.log('Translations:', translations);
+  console.log('fullName translation:', translations.fullName);
+  console.log('fullName[language]:', translations.fullName?.[language]);
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock login - in real app, validate credentials
